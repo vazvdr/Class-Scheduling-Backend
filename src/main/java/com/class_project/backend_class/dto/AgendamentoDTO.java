@@ -1,0 +1,100 @@
+package com.class_project.backend_class.dto;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+public class AgendamentoDTO {
+
+    // Para criação/atualização
+    private Long id;
+    private Long professorId;
+    private Long assuntoId;
+    private LocalDate data;
+    private LocalTime horario;
+
+    // Para leitura
+    private String nomeProfessor;
+    private String nomeAssunto;
+
+    // Construtores
+    public AgendamentoDTO() {
+    }
+
+    // Construtor para criação
+    public AgendamentoDTO(Long professorId, Long assuntoId, LocalDate data, LocalTime horario) {
+        this.professorId = professorId;
+        this.assuntoId = assuntoId;
+        this.data = data;
+        this.horario = horario;
+    }
+
+    // Construtor completo (para retorno)
+    public AgendamentoDTO(Long id, Long professorId, Long assuntoId, LocalDate data, LocalTime horario,
+                          String nomeProfessor, String nomeAssunto) {
+        this.id = id;
+        this.professorId = professorId;
+        this.assuntoId = assuntoId;
+        this.data = data;
+        this.horario = horario;
+        this.nomeProfessor = nomeProfessor;
+        this.nomeAssunto = nomeAssunto;
+    }
+
+    // Getters e Setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getProfessorId() {
+        return professorId;
+    }
+
+    public void setProfessorId(Long professorId) {
+        this.professorId = professorId;
+    }
+
+    public Long getAssuntoId() {
+        return assuntoId;
+    }
+
+    public void setAssuntoId(Long assuntoId) {
+        this.assuntoId = assuntoId;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public LocalTime getHorario() {
+        return horario;
+    }
+
+    public void setHorario(LocalTime horario) {
+        this.horario = horario;
+    }
+
+    public String getNomeProfessor() {
+        return nomeProfessor;
+    }
+
+    public void setNomeProfessor(String nomeProfessor) {
+        this.nomeProfessor = nomeProfessor;
+    }
+
+    public String getNomeAssunto() {
+        return nomeAssunto;
+    }
+
+    public void setNomeAssunto(String nomeAssunto) {
+        this.nomeAssunto = nomeAssunto;
+    }
+}

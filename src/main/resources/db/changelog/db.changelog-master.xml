@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog">
+
+	<changeSet id="1" author="vanderson">
+		<createTable tableName="assunto">
+			<column name="id" type="SERIAL">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="nome" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="duracao" type="INTEGER" />
+		</createTable>
+	</changeSet>
+
+	<changeSet id="2" author="vanderson">
+		<createTable tableName="professor">
+			<column name="id" type="SERIAL">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="nome" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="3" author="vanderson">
+		<createTable tableName="assunto_professor">
+			<column name="assunto_id" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="professor_id" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<constraints primaryKey="true" primaryKeyName="pk_assunto_professor"
+				primaryKeyColumns="assunto_id, professor_id" />
+		</createTable>
+
+		<addForeignKeyConstraint constraintName="fk_assunto"
+			baseTableName="assunto_professor"
+			baseColumnNames="assunto_id"
+			referencedTableName="assunto"
+			referencedColumnNames="id" />
+
+		<addForeignKeyConstraint constraintName="fk_professor"
+			baseTableName="assunto_professor"
+			baseColumnNames="professor_id"
+			referencedTableName="professor"
+			referencedColumnNames="id" />
+	</changeSet>
+
+	<changeSet id="4" author="vanderson">
+		<changeSet id="insert-assuntos" author="vanderson">
+			<insert tableName="assunto">
+				<column name="id" valueNumeric="1" />
+				<column name="nome" value="Desenvolvimento Frontend" />
+				<column name="duracao" valueNumeric="60" />
+			</insert>
+			<insert tableName="assunto">
+				<column name="id" valueNumeric="2" />
+				<column name="nome" value="Desenvolvimento Backend" />
+				<column name="duracao" valueNumeric="60" />
+			</insert>
+			<!-- Repita para os demais -->
+		</changeSet>
+		<insert tableName="assunto">
+			<column name="id" valueNumeric="3" />
+			<column name="nome" value="Desenvolvimento Fullstack" />
+			<column name="duracao" valueNumeric="120" />
+		</insert>
+		<insert tableName="assunto">
+			<column name="id" valueNumeric="4" />
+			<column name="nome" value="CiberSecurity" />
+			<column name="duracao" valueNumeric="90" />
+		</insert>
+		<insert tableName="assunto">
+			<column name="id" valueNumeric="5" />
+			<column name="nome" value="DevOps e Cloud" />
+			<column name="duracao" valueNumeric="90" />
+		</insert>
+		<insert tableName="assunto">
+			<column name="id" valueNumeric="6" />
+			<column name="nome" value="Inglês" />
+			<column name="duracao" valueNumeric="30" />
+		</insert>
+	</changeSet>
+
+	<changeSet id="5" author="vanderson">
+		<insert tableName="professor">
+			<column name="nome" value="Carla Frontend" />
+		</insert>
+		<insert tableName="professor">
+			<column name="nome" value="Pedrinho Backend" />
+		</insert>
+		<insert tableName="professor">
+			<column name="nome" value="Vitão Fullstack" />
+		</insert>
+		<insert tableName="professor">
+			<column name="nome" value="Bruno Hacker" />
+		</insert>
+		<insert tableName="professor">
+			<column name="nome" value="Serjão DevOps" />
+		</insert>
+		<insert tableName="professor">
+			<column name="nome" value="Amanda Teacher" />
+		</insert>
+	</changeSet>
+
+	<changeSet id="6" author="vanderson" runOnChange="true" runAlways="true">
+		<insert tableName="assunto_professor">
+			<column name="assunto_id" valueNumeric="1" />
+			<column name="professor_id" valueNumeric="1" />
+		</insert>
+		<insert tableName="assunto_professor">
+			<column name="assunto_id" valueNumeric="1" />
+			<column name="professor_id" valueNumeric="3" />
+		</insert>
+		<insert tableName="assunto_professor">
+			<column name="assunto_id" valueNumeric="2" />
+			<column name="professor_id" valueNumeric="2" />
+		</insert>
+		<insert tableName="assunto_professor">
+			<column name="assunto_id" valueNumeric="2" />
+			<column name="professor_id" valueNumeric="3" />
+		</insert>
+		<insert tableName="assunto_professor">
+			<column name="assunto_id" valueNumeric="3" />
+			<column name="professor_id" valueNumeric="3" />
+		</insert>
+		<insert tableName="assunto_professor">
+			<column name="assunto_id" valueNumeric="4" />
+			<column name="professor_id" valueNumeric="4" />
+		</insert>
+		<insert tableName="assunto_professor">
+			<column name="assunto_id" valueNumeric="4" />
+			<column name="professor_id" valueNumeric="5" />
+		</insert>
+		<insert tableName="assunto_professor">
+			<column name="assunto_id" valueNumeric="5" />
+			<column name="professor_id" valueNumeric="4" />
+		</insert>
+		<insert tableName="assunto_professor">
+			<column name="assunto_id" valueNumeric="5" />
+			<column name="professor_id" valueNumeric="5" />
+		</insert>
+		<insert tableName="assunto_professor">
+			<column name="assunto_id" valueNumeric="6" />
+			<column name="professor_id" valueNumeric="6" />
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>
