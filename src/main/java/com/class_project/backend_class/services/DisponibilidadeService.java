@@ -3,6 +3,8 @@ package com.class_project.backend_class.services;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -31,7 +33,9 @@ public class DisponibilidadeService {
 
     public List<LocalDate> gerarProximosDiasUteis(int dias) {
         List<LocalDate> diasUteis = new ArrayList<>();
-        LocalDate dataAtual = LocalDate.now();
+        ZoneId zonaBrasil = ZoneId.of("America/Sao_Paulo");
+        LocalDate dataAtual = ZonedDateTime.now(zonaBrasil).toLocalDate();
+
 
         while (diasUteis.size() < dias) {
             if (!(dataAtual.getDayOfWeek() == DayOfWeek.SATURDAY || dataAtual.getDayOfWeek() == DayOfWeek.SUNDAY)) {

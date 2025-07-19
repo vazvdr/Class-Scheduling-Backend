@@ -3,6 +3,8 @@ package com.class_project.backend_class.services;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -105,9 +107,12 @@ public class AgendamentoService {
     }
 
     public List<AgendamentoResponseDTO> listarAgendamentosPorUsuario(Long usuarioId) {
-        
-    	List<LocalDate> diasUteis = new ArrayList<>();
-        LocalDate data = LocalDate.now();
+        List<LocalDate> diasUteis = new ArrayList<>();
+
+        // ✅ Obtem a data atual com fuso horário brasileiro
+        ZoneId zonaBrasil = ZoneId.of("America/Sao_Paulo");
+        LocalDate data = ZonedDateTime.now(zonaBrasil).toLocalDate();
+
         int adicionados = 0;
 
         while (adicionados < 7) {

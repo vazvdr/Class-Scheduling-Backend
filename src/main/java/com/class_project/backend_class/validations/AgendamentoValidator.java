@@ -58,7 +58,7 @@ public class AgendamentoValidator {
             throw new AgendamentoException("Você já tem outra aula nesse horário.");
         }
     }
-
+    
     /**
      * Valida conflitos na agenda do professor, ignorando um agendamento específico.
      * Usado apenas no método de edição.
