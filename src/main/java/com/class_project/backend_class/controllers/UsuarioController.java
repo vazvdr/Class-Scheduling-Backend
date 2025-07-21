@@ -29,12 +29,15 @@ import com.class_project.backend_class.services.EmailService;
 import com.class_project.backend_class.services.UsuarioService;
 import com.class_project.backend_class.utils.JwtUtil;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/usuarios")
 @CrossOrigin(origins = "http://localhost:5173")
+@Tag(name = "Usuários", description = "Operações relacionadas a usuários")
 public class UsuarioController {
 
     @Autowired
@@ -52,12 +55,14 @@ public class UsuarioController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Operation(summary = "Cadastrar um novo usuário")
     @PostMapping("/cadastrar")
     public ResponseEntity<UsuarioResponseDTO> cadastrar(@RequestBody @Valid UsuarioRequestDTO dto) {
         UsuarioResponseDTO response = usuarioService.cadastrar(dto);
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Fazer login de um usuário")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid LoginRequestDTO loginDTO) {
         try {
@@ -69,6 +74,7 @@ public class UsuarioController {
         }
     }
 
+    @Operation(summary = "Editar dados de um usuário")
     @PutMapping("/editar")
     public ResponseEntity<?> editarUsuario(@RequestBody @Valid UsuarioRequestDTO dto, HttpServletRequest request) {
         try {
@@ -89,6 +95,7 @@ public class UsuarioController {
         }
     }
 
+    @Operation(summary = "Deletar a conta de um usuário pelo id")
     @DeleteMapping("/deletar")
     public ResponseEntity<?> deletarUsuario(HttpServletRequest request) {
         try {
@@ -107,7 +114,8 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("message", "Erro ao deletar usuário"));
         }
     }
-
+    
+    @Operation(summary = "Recuperar senha de um usuário")
     @PostMapping("/recuperar-senha")
     public ResponseEntity<String> recuperarSenha(@Valid @RequestBody RecuperarSenhaDTO dto) {
         Optional<Usuario> optionalUsuario = usuarioRepository.findByEmail(dto.getEmail());
@@ -139,6 +147,7 @@ public class UsuarioController {
         return ResponseEntity.ok("Email enviado com sucesso.");
     }
 
+    @Operation(summary = "Redefinir senha de um usuário")
     @PostMapping("/redefinir-senha")
     public ResponseEntity<?> redefinirSenha(@RequestBody RedefinirSenhaDTO dto) {
         Optional<PasswordResetToken> optionalToken = tokenRepository.findByToken(dto.getToken());

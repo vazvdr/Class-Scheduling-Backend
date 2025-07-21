@@ -15,13 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.class_project.backend_class.services.DisponibilidadeService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/disponibilidade")
+@Tag(name = "Disponibilidade", description = "Endpoint que mostra as datas e horarios disponíveis para agendamento")
 public class DisponibilidadeController {
 
     @Autowired
     private DisponibilidadeService disponibilidadeService;
 
+    @Operation(summary = "Lista as datas e horários disponíveis")
     @GetMapping
     public ResponseEntity<?> listarDisponibilidade(
         @RequestParam Long professorId,
@@ -44,6 +49,7 @@ public class DisponibilidadeController {
         return ResponseEntity.ok(resposta);
     }
     
+    @Operation(summary = "Lista as datas e horários disponíveis não marcando como ocupado o agendamento a ser editado")
     @GetMapping("/editar")
     public ResponseEntity<?> listarDisponibilidadeParaEdicao(
         @RequestParam Long professorId,
