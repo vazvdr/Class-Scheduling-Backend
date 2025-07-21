@@ -97,7 +97,9 @@ public class AgendamentoValidator {
                 LocalTime inicioExistente = agendamento.getHorario();
                 LocalTime fimExistente = inicioExistente.plusMinutes(agendamento.getAssunto().getDuracao());
 
-                boolean conflito = !(novoFim.isBefore(inicioExistente) || novoInicio.isAfter(fimExistente));
+             // Libera agendamentos que começam exatamente no horário de término
+                boolean conflito = novoInicio.isBefore(fimExistente) && novoFim.isAfter(inicioExistente);
+                
                 if (conflito) {
                     throw new RuntimeException("Este horário conflita com outro agendamento seu.");
                 }
