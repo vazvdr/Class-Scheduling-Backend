@@ -38,8 +38,7 @@ public class SecurityConfig {
                     "/usuarios/redefinir-senha",
                     "/v3/api-docs/**",
                     "/swagger-ui/**",
-                    "/swagger-ui.html",
-                    "https://class-scheduling-backend.onrender.com/"
+                    "/swagger-ui.html"
                 ).permitAll()
                 .anyRequest().authenticated()
             )
