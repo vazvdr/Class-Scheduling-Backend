@@ -32,7 +32,7 @@ public class DisponibilidadeController {
         @RequestParam Long professorId,
         @RequestParam Long assuntoId
     ) {
-        List<LocalDate> dias = disponibilidadeService.gerarProximosDiasUteis(7);
+        List<LocalDate> dias = disponibilidadeService.gerarProximosDiasUteis(6);
 
         Map<String, Map<String, List<String>>> resposta = new LinkedHashMap<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

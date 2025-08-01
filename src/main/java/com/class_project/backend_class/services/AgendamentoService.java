@@ -115,7 +115,7 @@ public class AgendamentoService {
 
         int adicionados = 0;
 
-        while (adicionados < 7) {
+        while (adicionados < 6) {
             DayOfWeek dia = data.getDayOfWeek();
             if (dia != DayOfWeek.SATURDAY && dia != DayOfWeek.SUNDAY) {
                 diasUteis.add(data);

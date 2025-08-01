@@ -31,7 +31,6 @@ public class JwtUtil {
 			.claim("id", usuario.getId())
 			.claim("nome", usuario.getNome())
 			.setIssuedAt(new Date())
-			.setExpiration(new Date(System.currentTimeMillis() + 86400000))
 			.signWith(chaveSecreta, SignatureAlgorithm.HS512)
 			.compact();
 	}
