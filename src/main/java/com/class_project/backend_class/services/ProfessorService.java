@@ -18,15 +18,12 @@ public class ProfessorService {
         this.professorRepository = professorRepository;
     }
 
-    @Cacheable(value = "professores")
     public List<Professor> listarTodosProfessores() {
-		System.out.println("Buscando professores no banco de dados");
         return professorRepository.findAll();
     }
-    
-    @Cacheable(value = "professor", key = "#id")
+
     public Professor buscarPorId(Long id) {
-        Optional<Professor> obj = professorRepository.findById(id);
-        return obj.orElseThrow(() -> new RuntimeException("Professor não encontrado"));
+    	Optional<Professor> obj = professorRepository.findById(id);
+        return obj.get();
     }
 }
