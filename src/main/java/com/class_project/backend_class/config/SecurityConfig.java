@@ -38,9 +38,7 @@ public class SecurityConfig {
                     "/usuarios/redefinir-senha",
                     "/v3/api-docs/**",
                     "/swagger-ui/**",
-                    "/swagger-ui.html",
-                    "/health"
-                    
+                    "/swagger-ui.html"                    
                 ).permitAll()
                 .anyRequest().authenticated()
             )
