@@ -136,7 +136,7 @@ public class UsuarioController {
 
         tokenRepository.save(resetToken);
 
-        String link = "http://localhost:5173/redefinir-senha?token=" + token;
+        String link = "https://class-scheduling.vercel.app/redefinir-senha?token=" + token;
         emailService.enviarEmailRecuperarSenha(
                 usuario.getEmail(),
                 "Redefinição de senha",
